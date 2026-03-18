@@ -12,10 +12,10 @@
     
     <style>
         :root {
-            --primary-black: #1a1a1a; /* Referência ao Blazer/Calça */
-            --accent-wine: #6b1a2a;   /* Cor L'EQUIPE */
-            --accent-mustard: #c6942c; /* Cor MOM PARFUM */
-            --light-gray: #e8e8e8;    /* Cor LE PARFUM */
+            --primary-black: #1a1a1a;
+            --accent-wine: #6b1a2a;
+            --accent-mustard: #c6942c;
+            --light-gray: #e8e8e8;
             --white: #ffffff;
             --text-main: #2d3436;
             --text-muted: #636e72;
@@ -24,6 +24,7 @@
             --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        /* Mobile-First Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -32,10 +33,11 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--text-main);
             background-color: #fcfcfc;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Evita scroll horizontal acidental */
         }
 
         h1, h2, h3, h4 {
@@ -44,15 +46,16 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 15px; /* Padding menor para mobile */
         }
 
         /* Nav */
         nav {
             background: var(--white);
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -61,28 +64,29 @@
 
         .nav-flex {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stack no mobile */
+            gap: 10px;
             align-items: center;
         }
 
         .logo {
-            height: 50px;
+            height: 40px;
             object-fit: contain;
         }
 
         .proposal-badge {
-            font-size: 0.8em;
+            font-size: 0.7em;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 1px;
             border: 1px solid var(--border-color);
-            padding: 5px 15px;
+            padding: 4px 12px;
             border-radius: 20px;
         }
 
         /* Hero */
         header.hero {
-            padding: 80px 0;
+            padding: 40px 0;
             background: var(--primary-black);
             color: var(--white);
             text-align: center;
@@ -90,52 +94,55 @@
         }
 
         .hero h1 {
-            font-size: 2.8em;
+            font-size: 1.8em; /* Menor no mobile */
             margin-bottom: 10px;
+            padding: 0 10px;
         }
 
         .hero p.subtitle {
             color: var(--accent-mustard);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             font-weight: 500;
-            margin-bottom: 40px;
+            font-size: 0.85em;
+            margin-bottom: 30px;
         }
 
         .client-info-box {
-            display: inline-grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            display: flex;
+            flex-direction: column; /* Stack vertical */
+            gap: 20px;
             background: rgba(255,255,255,0.05);
-            padding: 20px 40px;
+            padding: 20px;
             border-radius: var(--radius);
-            text-align: left;
+            text-align: center;
+            margin: 0 10px;
         }
 
         .client-info-box span {
             display: block;
-            font-size: 0.7em;
+            font-size: 0.65em;
             text-transform: uppercase;
             color: #999;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         /* Showcase */
-        section { padding: 80px 0; }
+        section { padding: 50px 0; }
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
         .section-title h2 {
-            font-size: 2.2em;
+            font-size: 1.6em;
             color: var(--primary-black);
             margin-bottom: 10px;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr; /* 1 coluna no mobile */
+            gap: 20px;
         }
 
         .product-card {
@@ -143,72 +150,76 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease;
             cursor: pointer;
         }
 
-        .product-card:hover { transform: translateY(-5px); }
-
         .product-card img {
             width: 100%;
-            height: 380px;
+            height: 320px;
             object-fit: cover;
             display: block;
         }
 
         .product-card .info {
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            background: var(--white);
         }
 
-        /* Table */
-        .table-container {
+        /* Table - O ponto crítico */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Permite scroll se a tabela for muito larga */
             background: white;
             border-radius: var(--radius);
-            overflow: hidden;
             box-shadow: var(--shadow-md);
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 500px; /* Garante que os dados não fiquem espremidos demais */
         }
 
         th {
             background: var(--primary-black);
             color: white;
-            padding: 20px;
+            padding: 12px 10px;
             text-align: left;
-            font-family: 'Playfair Display', serif;
+            font-size: 0.85em;
         }
 
         td {
-            padding: 20px;
+            padding: 12px 10px;
             border-bottom: 1px solid var(--border-color);
+            font-size: 0.9em;
         }
 
         .total-row {
             background: #f8f9fa;
             font-weight: 700;
-            font-size: 1.2em;
+        }
+
+        .total-row td {
+            font-size: 1em;
+            padding: 20px 10px;
         }
 
         .total-value {
             color: var(--accent-wine);
             font-family: 'Playfair Display', serif;
+            white-space: nowrap; /* Não quebra o valor */
         }
 
         /* Tech Specs */
         .tech-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .tech-item {
-            padding: 30px;
+            padding: 20px;
             background: white;
             border-radius: var(--radius);
             border-left: 5px solid var(--primary-black);
@@ -217,50 +228,52 @@
 
         .tech-item h4 {
             color: var(--accent-wine);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
         /* Conditions */
         .conditions-card {
             background: var(--primary-black);
             color: white;
-            padding: 50px;
+            padding: 30px 20px;
             border-radius: var(--radius);
         }
 
         .conditions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 25px;
         }
 
         .condition-item h5 {
             color: var(--accent-mustard);
             font-family: 'Playfair Display', serif;
-            font-size: 1.1em;
-            margin-bottom: 10px;
+            font-size: 1em;
+            margin-bottom: 5px;
         }
 
         /* Footer */
         footer {
             background: #000;
             color: #888;
-            padding: 80px 0 40px;
-            font-size: 0.9em;
+            padding: 50px 0 30px;
+            font-size: 0.85em;
+            text-align: center;
         }
 
         .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-grid h3 { color: white; margin-bottom: 20px; }
+        .footer-grid h3 { color: white; margin-bottom: 15px; font-size: 1.1em; }
 
         .btn-contact {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px 25px;
             border: 1px solid var(--accent-mustard);
             color: var(--accent-mustard);
@@ -269,25 +282,21 @@
             transition: 0.3s;
         }
 
-        .btn-contact:hover {
-            background: var(--accent-mustard);
-            color: black;
-        }
-
-        /* Floating Print */
+        /* Floating Print - Escondido em telas muito pequenas */
         .print-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: var(--accent-wine);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 20px;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             font-weight: 600;
             z-index: 1100;
+            font-size: 0.8em;
         }
 
         /* Modal */
@@ -299,25 +308,58 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
+            padding: 10px;
         }
-        .modal img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .modal img { max-width: 100%; max-height: 90%; object-fit: contain; }
+
+        /* Media Queries para Desktop */
+        @media (min-width: 768px) {
+            .container { padding: 0 25px; }
+            
+            .nav-flex {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            header.hero { padding: 80px 0; }
+            .hero h1 { font-size: 2.8em; }
+            .hero p.subtitle { font-size: 1em; }
+            
+            .client-info-box {
+                display: inline-grid;
+                grid-template-columns: repeat(3, 1fr);
+                flex-direction: row;
+                text-align: left;
+                padding: 20px 40px;
+            }
+
+            .section-title h2 { font-size: 2.2em; }
+            
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+            
+            .tech-box { flex-direction: row; }
+            .tech-item { flex: 1; }
+
+            .conditions-grid { grid-template-columns: 1fr 1fr; }
+            .conditions-card { padding: 50px; }
+
+            .footer-grid {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .footer-grid div { flex: 1; }
+        }
 
         @media print {
             .print-btn, nav { display: none !important; }
             body { background: white; }
-            .hero { background: white !important; color: black !important; border-bottom: 2px solid black; }
+            .hero { background: white !important; color: black !important; border-bottom: 2px solid black; padding: 20px 0; }
             .hero p.subtitle { color: black !important; }
-            .client-info-box { background: white !important; border: 1px solid #ccc; color: black !important; }
+            .client-info-box { background: white !important; border: 1px solid #ccc; color: black !important; display: grid !important; grid-template-columns: repeat(3, 1fr) !important; }
             .conditions-card { background: white !important; color: black !important; border: 1px solid #ccc; }
             .conditions-card h5 { color: black !important; }
-        }
-
-        @media (max-width: 768px) {
-            .client-info-box, .tech-box, .conditions-grid, .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 { font-size: 2em; }
+            .table-wrapper { box-shadow: none; border: 1px solid #eee; }
         }
     </style>
 </head>
@@ -325,7 +367,6 @@
 
     <nav>
         <div class="container nav-flex">
-            <!-- Removido o / inicial para funcionar no GitHub Pages -->
             <img src="imagens/dora.jpg" alt="Dora Pinheiro" class="logo">
             <span class="proposal-badge">PROPOSTA Nº 016/2026</span>
         </div>
@@ -356,7 +397,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Catálogo de Amostras</h2>
-                <p>Modelagens exclusivas focadas em elegância e postura profissional</p>
+                <p>Modelagens exclusivas para postura profissional</p>
             </div>
 
             <div class="product-grid">
@@ -395,16 +436,16 @@
     <section style="background: #f4f4f4;">
         <div class="container">
             <div class="section-title">
-                <h2>Detalhamento do Investimento</h2>
+                <h2>Investimento</h2>
             </div>
 
-            <div class="table-container">
+            <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>Descrição Técnica</th>
                             <th>Tecido</th>
-                            <th style="text-align: center;">V. Unitário</th>
+                            <th style="text-align: center;">V. Unit.</th>
                             <th style="text-align: center;">Qtd.</th>
                             <th style="text-align: right;">Total</th>
                         </tr>
@@ -413,7 +454,7 @@
                         <tr>
                             <td>
                                 <strong>Calça Social</strong><br>
-                                <small>Modelo feminino (Ref. Amostra do cliente)</small>
+                                <small>Modelo feminino</small>
                             </td>
                             <td>Two Way</td>
                             <td style="text-align: center;">R$ 76,50</td>
@@ -423,9 +464,9 @@
                         <tr>
                             <td>
                                 <strong>Camisa 3/4</strong><br>
-                                <small>Com logo bordada no peito (Lado Esquerdo)</small>
+                                <small>Com logo bordada</small>
                             </td>
-                            <td>Tricoline c/ Elastano</td>
+                            <td>Tricoline</td>
                             <td style="text-align: center;">R$ 79,00</td>
                             <td style="text-align: center;">200</td>
                             <td style="text-align: right;">R$ 15.800,00</td>
@@ -433,7 +474,7 @@
                         <tr>
                             <td>
                                 <strong>Blazer MLM</strong><br>
-                                <small>Manga longa, modelo forrado</small>
+                                <small>Manga longa, forrado</small>
                             </td>
                             <td>Two Way</td>
                             <td style="text-align: center;">R$ 109,00</td>
@@ -441,29 +482,29 @@
                             <td style="text-align: right;">R$ 10.900,00</td>
                         </tr>
                         <tr class="total-row">
-                            <td colspan="4" style="text-align: right;">VALOR TOTAL DO INVESTIMENTO:</td>
+                            <td colspan="4" style="text-align: right;">VALOR TOTAL:</td>
                             <td class="total-value" style="text-align: right;">R$ 42.000,00</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p style="font-size: 0.75em; color: #888; margin-top: 10px; text-align: center;" class="mobile-only">Deslize a tabela para o lado para ver todos os valores.</p>
         </div>
     </section>
 
     <section>
         <div class="container">
             <div class="section-title">
-                <h2>Qualidade e Especificações</h2>
-                <p>Materiais selecionados para alto fluxo de atendimento</p>
+                <h2>Qualidade</h2>
             </div>
             <div class="tech-box">
                 <div class="tech-item">
-                    <h4>Tecido Two Way (Poliéster/Elastano)</h4>
-                    <p>Tecido encorpado com excelente durabilidade. A presença do elastano proporciona flexibilidade para a movimentação no ponto de venda, garantindo alinhamento impecável durante todo o turno.</p>
+                    <h4>Tecido Two Way</h4>
+                    <p>Excelente durabilidade e flexibilidade. Baixa taxa de amarrotamento, ideal para o dia a dia.</p>
                 </div>
-                <div class="tech-item">
-                    <h4>Tricoline com Elastano</h4>
-                    <p>Fibra nobre que une o frescor do algodão à mobilidade. Garante toque macio, ótima respirabilidade e ajuste impecável ao corpo, essencial para o conforto térmico diário.</p>
+                <div class="tech-item" style="margin-top: 20px; border-left-color: var(--accent-mustard);">
+                    <h4>Tricoline Elastano</h4>
+                    <p>Frescor do algodão com a mobilidade do elastano. Toque macio e ajuste impecável.</p>
                 </div>
             </div>
         </div>
@@ -472,23 +513,23 @@
     <section>
         <div class="container">
             <div class="conditions-card">
-                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 30px; border-left: 3px solid var(--accent-mustard); padding-left: 20px;">Condições Comerciais</h2>
+                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 25px; border-left: 3px solid var(--accent-mustard); padding-left: 15px; font-size: 1.4em;">Condições</h2>
                 <div class="conditions-grid">
                     <div class="condition-item">
                         <h5>Grade de Tamanhos</h5>
-                        <p>Distribuição de tamanhos (P ao EXG) a ser fornecida pelo cliente para início do corte.</p>
+                        <p>Distribuição P ao EXG fornecida pelo cliente.</p>
                     </div>
                     <div class="condition-item">
-                        <h5>Forma de Pagamento</h5>
-                        <p>50% de sinal no aceite da proposta e 50% na entrega final das peças.</p>
+                        <h5>Pagamento</h5>
+                        <p>50% sinal e 50% na entrega final.</p>
                     </div>
                     <div class="condition-item">
                         <h5>Prazo de Entrega</h5>
-                        <p>40 dias úteis após confirmação do sinal e recebimento da grade completa.</p>
+                        <p>40 dias úteis após sinal e grade.</p>
                     </div>
                     <div class="condition-item">
-                        <h5>Garantia Dora Pinheiro</h5>
-                        <p>Especialista em Uniformes Profissionais e soluções têxteis com foco em acabamento de luxo.</p>
+                        <h5>Garantia</h5>
+                        <p>Especialista em acabamento têxtil de luxo.</p>
                     </div>
                 </div>
             </div>
@@ -499,36 +540,32 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <h3>DP3 CONFECÇÕES EIRELI</h3>
+                    <h3>DP3 CONFECÇÕES</h3>
                     <p>CNPJ: 33.150.176/0001-89</p>
-                    <p>IE: 11.659.926</p>
-                    <img src="imagens/dora.jpg" alt="Logo Footer" style="height: 60px; margin-top: 20px; filter: grayscale(1) brightness(2);">
+                    <img src="imagens/dora.jpg" alt="Logo Footer" style="height: 60px; margin-top: 15px; filter: grayscale(1) brightness(2);">
                 </div>
                 <div>
                     <h3>Localização</h3>
                     <p>Rua Tenente Abel Cunha, 84</p>
-                    <p>Higienópolis - Rio de Janeiro/RJ</p>
-                    <p>CEP: 22059-540</p>
+                    <p>Rio de Janeiro/RJ</p>
                 </div>
                 <div>
                     <h3>Contato</h3>
-                    <p><strong>E-mail:</strong></p>
                     <p>crisantogomes@gmail.com</p>
                     <p>requigo80@gmail.com</p>
-                    <p style="margin-top: 10px;"><strong>Tel:</strong></p>
-                    <p>Crisanto: (21) 96560-3404</p>
+                    <p style="margin-top: 10px;">Crisanto: (21) 96560-3404</p>
                     <p>Robson: (21) 98132-1039</p>
-                    <a href="mailto:crisantogomes@gmail.com" class="btn-contact">Solicitar Pedido</a>
+                    <a href="mailto:crisantogomes@gmail.com" class="btn-contact">Enviar E-mail</a>
                 </div>
             </div>
-            <div style="text-align: center; border-top: 1px solid #333; padding-top: 20px;">
-                &copy; 2026 Dora Pinheiro Confecções. Especialista em Uniformes Corporativos.
+            <div style="padding-top: 20px; font-size: 0.8em; border-top: 1px solid #222;">
+                &copy; 2026 Dora Pinheiro Confecções.
             </div>
         </div>
     </footer>
 
     <button class="print-btn" onclick="window.print()">
-        Gerar PDF da Proposta
+        PDF da Proposta
     </button>
 
     <div id="modal" class="modal" onclick="closeModal()">
@@ -543,7 +580,6 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
-        // Fechar com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
