@@ -120,29 +120,6 @@
             margin-bottom: 5px;
         }
 
-        /* Identity Section */
-        .identity-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .identity-card {
-            background: white;
-            padding: 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid transparent;
-        }
-
-        .identity-card.le-parfum { border-color: var(--light-gray); }
-        .identity-card.le-equipe { border-color: var(--accent-wine); }
-        .identity-card.mom-parfum { border-color: var(--accent-mustard); }
-
-        .identity-card h4 { margin-bottom: 10px; color: var(--primary-black); }
-
         /* Showcase */
         section { padding: 80px 0; }
         .section-title {
@@ -337,7 +314,7 @@
         }
 
         @media (max-width: 768px) {
-            .client-info-box, .identity-grid, .tech-box, .conditions-grid, .footer-grid {
+            .client-info-box, .tech-box, .conditions-grid, .footer-grid {
                 grid-template-columns: 1fr;
             }
             .hero h1 { font-size: 2em; }
@@ -348,7 +325,8 @@
 
     <nav>
         <div class="container nav-flex">
-            <img src="/imagens/dora.jpg" alt="Dora Pinheiro" class="logo">
+            <!-- Removido o / inicial para funcionar no GitHub Pages -->
+            <img src="imagens/dora.jpg" alt="Dora Pinheiro" class="logo">
             <span class="proposal-badge">PROPOSTA Nº 016/2026</span>
         </div>
     </nav>
@@ -371,7 +349,6 @@
                     <strong>10 Dias</strong>
                 </div>
             </div>
-
         </div>
     </header>
 
@@ -383,29 +360,29 @@
             </div>
 
             <div class="product-grid">
-                <div class="product-card" onclick="openModal('/imagens/amarelo.jpg')">
-                    <img src="/imagens/amarelo.jpg" alt="MOM PARFUM - Mostarda">
+                <div class="product-card" onclick="openModal('imagens/amarelo.jpg')">
+                    <img src="imagens/amarelo.jpg" alt="MOM PARFUM - Mostarda">
                     <div class="info">
                         <strong>MOM PARFUM</strong>
                         <p style="color: var(--accent-mustard); font-size: 0.9em;">Camisa Mostarda</p>
                     </div>
                 </div>
-                <div class="product-card" onclick="openModal('/imagens/vinho.jpg')">
-                    <img src="/imagens/vinho.jpg" alt="L'EQUIPE - Vinho">
+                <div class="product-card" onclick="openModal('imagens/vinho.jpg')">
+                    <img src="imagens/vinho.jpg" alt="L'EQUIPE - Vinho">
                     <div class="info">
                         <strong>L'EQUIPE</strong>
                         <p style="color: var(--accent-wine); font-size: 0.9em;">Camisa Vinho</p>
                     </div>
                 </div>
-                <div class="product-card" onclick="openModal('/imagens/branco.jpg')">
-                    <img src="/imagens/branco.jpg" alt="LE PARFUM - Cinza Claro">
+                <div class="product-card" onclick="openModal('imagens/branco.jpg')">
+                    <img src="imagens/branco.jpg" alt="LE PARFUM - Cinza Claro">
                     <div class="info">
                         <strong>LE PARFUM</strong>
                         <p style="color: var(--text-muted); font-size: 0.9em;">Camisa Cinza Claro</p>
                     </div>
                 </div>
-                <div class="product-card" onclick="openModal('/imagens/preto.jpg')">
-                    <img src="/imagens/preto.jpg" alt="Alfaiataria Completa">
+                <div class="product-card" onclick="openModal('imagens/preto.jpg')">
+                    <img src="imagens/preto.jpg" alt="Alfaiataria Completa">
                     <div class="info">
                         <strong>ALFAIATARIA</strong>
                         <p style="color: var(--primary-black); font-size: 0.9em;">Conjunto Blazer & Calça</p>
@@ -525,7 +502,7 @@
                     <h3>DP3 CONFECÇÕES EIRELI</h3>
                     <p>CNPJ: 33.150.176/0001-89</p>
                     <p>IE: 11.659.926</p>
-                    <img src="/imagens/dora.jpg" alt="Logo Footer" style="height: 40px; margin-top: 20px; filter: grayscale(1) brightness(2);">
+                    <img src="imagens/dora.jpg" alt="Logo Footer" style="height: 40px; margin-top: 20px; filter: grayscale(1) brightness(2);">
                 </div>
                 <div>
                     <h3>Localização</h3>
@@ -535,10 +512,10 @@
                 </div>
                 <div>
                     <h3>Contato</h3>
-                    <p>E-mail:</p>
+                    <p><strong>E-mail:</strong></p>
                     <p>crisantogomes@gmail.com</p>
                     <p>requigo80@gmail.com</p>
-                    <p>Tel:</p>
+                    <p style="margin-top: 10px;"><strong>Tel:</strong></p>
                     <p>Crisanto: (21) 96560-3404</p>
                     <p>Robson: (21) 98132-1039</p>
                     <a href="mailto:crisantogomes@gmail.com" class="btn-contact">Solicitar Pedido</a>
