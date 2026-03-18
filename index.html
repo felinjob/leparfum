@@ -37,7 +37,7 @@
             color: var(--text-main);
             background-color: #fcfcfc;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita scroll horizontal acidental */
         }
 
         h1, h2, h3, h4 {
@@ -49,7 +49,7 @@
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 15px; /* Padding menor para mobile */
         }
 
         /* Nav */
@@ -64,7 +64,7 @@
 
         .nav-flex {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Stack no mobile */
             gap: 10px;
             align-items: center;
         }
@@ -94,7 +94,7 @@
         }
 
         .hero h1 {
-            font-size: 1.6em;
+            font-size: 1.8em; /* Menor no mobile */
             margin-bottom: 10px;
             padding: 0 10px;
         }
@@ -104,44 +104,44 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 500;
-            font-size: 0.8em;
+            font-size: 0.85em;
             margin-bottom: 30px;
         }
 
         .client-info-box {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-direction: column; /* Stack vertical */
+            gap: 20px;
             background: rgba(255,255,255,0.05);
             padding: 20px;
             border-radius: var(--radius);
             text-align: center;
-            margin: 0 5px;
+            margin: 0 10px;
         }
 
         .client-info-box span {
             display: block;
-            font-size: 0.6em;
+            font-size: 0.65em;
             text-transform: uppercase;
             color: #999;
             margin-bottom: 3px;
         }
 
         /* Showcase */
-        section { padding: 40px 0; }
+        section { padding: 50px 0; }
         .section-title {
             text-align: center;
             margin-bottom: 30px;
         }
         .section-title h2 {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: var(--primary-black);
             margin-bottom: 10px;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* 1 coluna no mobile */
             gap: 20px;
         }
 
@@ -155,7 +155,7 @@
 
         .product-card img {
             width: 100%;
-            height: 300px;
+            height: 320px;
             object-fit: cover;
             display: block;
         }
@@ -165,84 +165,57 @@
             text-align: center;
         }
 
-        /* Tabela Adaptável (Stackable) */
-        .table-container {
+        /* Table - O ponto crítico */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Permite scroll se a tabela for muito larga */
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
             margin-top: 20px;
         }
 
-        table.stackable {
+        table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 500px; /* Garante que os dados não fiquem espremidos demais */
         }
 
-        /* Esconde o cabeçalho no mobile */
-        table.stackable thead {
-            display: none;
-        }
-
-        table.stackable tbody tr {
-            display: block;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 15px;
-            padding: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        table.stackable tbody td {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 5px;
-            border-bottom: 1px solid #f1f1f1;
-            text-align: right;
-            font-size: 0.9em;
-        }
-
-        table.stackable tbody td:last-child {
-            border-bottom: none;
-        }
-
-        /* Adiciona o rótulo antes do valor no mobile */
-        table.stackable tbody td::before {
-            content: attr(data-label);
-            font-weight: 600;
-            color: var(--primary-black);
+        th {
+            background: var(--primary-black);
+            color: white;
+            padding: 12px 10px;
             text-align: left;
-            padding-right: 10px;
             font-size: 0.85em;
         }
 
-        /* Ajuste específico para a descrição do item no mobile */
-        table.stackable tbody td.item-main {
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-        table.stackable tbody td.item-main::before {
-            margin-bottom: 5px;
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9em;
         }
 
-        /* Estilo para a linha de Total no mobile */
-        table.stackable tr.total-row {
-            border: 2px solid var(--accent-wine);
-            background: #fffcfc;
-        }
-        table.stackable tr.total-row td {
-            padding: 15px 5px;
-            font-size: 1.1em;
-        }
-        table.stackable tr.total-row .total-value {
+        .total-row {
+            background: #f8f9fa;
             font-weight: 700;
+        }
+
+        .total-row td {
+            font-size: 1em;
+            padding: 20px 10px;
+        }
+
+        .total-value {
             color: var(--accent-wine);
+            font-family: 'Playfair Display', serif;
+            white-space: nowrap; /* Não quebra o valor */
         }
 
         /* Tech Specs */
         .tech-box {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .tech-item {
@@ -263,20 +236,20 @@
         .conditions-card {
             background: var(--primary-black);
             color: white;
-            padding: 30px 15px;
+            padding: 30px 20px;
             border-radius: var(--radius);
         }
 
         .conditions-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 25px;
         }
 
         .condition-item h5 {
             color: var(--accent-mustard);
             font-family: 'Playfair Display', serif;
-            font-size: 1.05em;
+            font-size: 1em;
             margin-bottom: 5px;
         }
 
@@ -284,24 +257,24 @@
         footer {
             background: #000;
             color: #888;
-            padding: 40px 0 20px;
-            font-size: 0.8em;
+            padding: 50px 0 30px;
+            font-size: 0.85em;
             text-align: center;
         }
 
         .footer-grid {
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-grid h3 { color: white; margin-bottom: 15px; font-size: 1em; }
+        .footer-grid h3 { color: white; margin-bottom: 15px; font-size: 1.1em; }
 
         .btn-contact {
             display: inline-block;
             margin-top: 15px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: 1px solid var(--accent-mustard);
             color: var(--accent-mustard);
             text-decoration: none;
@@ -309,7 +282,7 @@
             transition: 0.3s;
         }
 
-        /* Floating Print */
+        /* Floating Print - Escondido em telas muito pequenas */
         .print-btn {
             position: fixed;
             bottom: 20px;
@@ -317,13 +290,13 @@
             background: var(--accent-wine);
             color: white;
             border: none;
-            padding: 12px 18px;
+            padding: 12px 20px;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             font-weight: 600;
             z-index: 1100;
-            font-size: 0.75em;
+            font-size: 0.8em;
         }
 
         /* Modal */
@@ -339,7 +312,7 @@
         }
         .modal img { max-width: 100%; max-height: 90%; object-fit: contain; }
 
-        /* Tablet & Desktop Layout Reversion */
+        /* Media Queries para Desktop */
         @media (min-width: 768px) {
             .container { padding: 0 25px; }
             
@@ -348,7 +321,7 @@
                 justify-content: space-between;
             }
 
-            header.hero { padding: 70px 0; }
+            header.hero { padding: 80px 0; }
             .hero h1 { font-size: 2.8em; }
             .hero p.subtitle { font-size: 1em; }
             
@@ -358,63 +331,12 @@
                 flex-direction: row;
                 text-align: left;
                 padding: 20px 40px;
-                margin: 0;
             }
 
             .section-title h2 { font-size: 2.2em; }
             
             .product-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
             
-            /* Melhoria de contraste na tabela para telas maiores */
-            table.stackable thead {
-                display: table-header-group;
-                background: var(--primary-black);
-            }
-            table.stackable thead th {
-                color: var(--white);
-                padding: 25px 15px;
-                border-bottom: 2px solid #333;
-            }
-            table.stackable tbody tr {
-                display: table-row;
-                background: #252525; /* Fundo escuro para destacar o texto claro */
-                border: none;
-                box-shadow: none;
-            }
-            table.stackable tbody tr:nth-child(even) {
-                background: #1e1e1e; /* Efeito de listra escura */
-            }
-            table.stackable tbody td {
-                display: table-cell;
-                border-bottom: 1px solid #333;
-                padding: 22px 15px;
-                text-align: left;
-                font-size: 1em;
-                color: #e0e0e0; /* Texto mais claro para alto contraste */
-            }
-            table.stackable tbody td strong {
-                color: var(--white);
-            }
-            table.stackable tbody td small {
-                color: #b0b0b0;
-            }
-            table.stackable tbody td::before {
-                display: none;
-            }
-            table.stackable tbody td.item-main {
-                flex-direction: row;
-            }
-            table.stackable tr.total-row td {
-                text-align: right;
-                background: var(--primary-black);
-                color: var(--white);
-                border-top: 2px solid var(--accent-wine);
-            }
-            table.stackable tr.total-row .total-value {
-                color: var(--accent-mustard);
-                font-size: 1.3em;
-            }
-
             .tech-box { flex-direction: row; }
             .tech-item { flex: 1; }
 
@@ -436,14 +358,8 @@
             .hero p.subtitle { color: black !important; }
             .client-info-box { background: white !important; border: 1px solid #ccc; color: black !important; display: grid !important; grid-template-columns: repeat(3, 1fr) !important; }
             .conditions-card { background: white !important; color: black !important; border: 1px solid #ccc; }
-            .table-container { border: 1px solid #eee; }
-            table.stackable thead { display: table-header-group; background: #eee !important; }
-            table.stackable thead th { color: black !important; }
-            table.stackable tbody tr { display: table-row; background: white !important; }
-            table.stackable tbody td { display: table-cell; color: black !important; border-bottom: 1px solid #eee; }
-            table.stackable tbody td strong, table.stackable tbody td small { color: black !important; }
-            table.stackable tbody td::before { display: none; }
-            table.stackable tr.total-row td { background: #f9f9f9 !important; color: black !important; }
+            .conditions-card h5 { color: black !important; }
+            .table-wrapper { box-shadow: none; border: 1px solid #eee; }
         }
     </style>
 </head>
@@ -458,7 +374,6 @@
 
     <header class="hero">
         <div class="container">
-            
             <h1>Orçamento de Uniformes</h1>
             <div class="client-info-box">
                 <div>
@@ -520,11 +435,11 @@
     <section style="background: #f4f4f4;">
         <div class="container">
             <div class="section-title">
-                <h2>Investimento Detalhado</h2>
+                <h2>Investimento</h2>
             </div>
 
-            <div class="table-container">
-                <table class="stackable">
+            <div class="table-wrapper">
+                <table>
                     <thead>
                         <tr>
                             <th>Descrição Técnica</th>
@@ -536,58 +451,59 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="Descrição" class="item-main">
+                            <td>
                                 <strong>Calça Social</strong><br>
-                                <small>Modelo feminino (Ref. Amostra)</small>
+                                <small>Modelo feminino</small>
                             </td>
-                            <td data-label="Tecido">Two Way</td>
-                            <td data-label="V. Unitário">R$ 76,50</td>
-                            <td data-label="Quantidade">200 un.</td>
-                            <td data-label="Subtotal">R$ 15.300,00</td>
+                            <td>Two Way</td>
+                            <td style="text-align: center;">R$ 76,50</td>
+                            <td style="text-align: center;">200</td>
+                            <td style="text-align: right;">R$ 15.300,00</td>
                         </tr>
                         <tr>
-                            <td data-label="Descrição" class="item-main">
+                            <td>
                                 <strong>Camisa 3/4</strong><br>
                                 <small>Com logo bordada</small>
                             </td>
-                            <td data-label="Tecido">Tricoline</td>
-                            <td data-label="V. Unitário">R$ 79,00</td>
-                            <td data-label="Quantidade">200 un.</td>
-                            <td data-label="Subtotal">R$ 15.800,00</td>
+                            <td>Tricoline</td>
+                            <td style="text-align: center;">R$ 79,00</td>
+                            <td style="text-align: center;">200</td>
+                            <td style="text-align: right;">R$ 15.800,00</td>
                         </tr>
                         <tr>
-                            <td data-label="Descrição" class="item-main">
+                            <td>
                                 <strong>Blazer MLM</strong><br>
                                 <small>Manga longa, forrado</small>
                             </td>
-                            <td data-label="Tecido">Two Way</td>
-                            <td data-label="V. Unitário">R$ 109,00</td>
-                            <td data-label="Quantidade">100 un.</td>
-                            <td data-label="Subtotal">R$ 10.900,00</td>
+                            <td>Two Way</td>
+                            <td style="text-align: center;">R$ 109,00</td>
+                            <td style="text-align: center;">100</td>
+                            <td style="text-align: right;">R$ 10.900,00</td>
                         </tr>
                         <tr class="total-row">
-                            <td colspan="4" data-label="Status" class="item-main"><strong>VALOR TOTAL DO INVESTIMENTO</strong></td>
-                            <td data-label="Investimento Final" class="total-value">R$ 42.000,00</td>
+                            <td colspan="4" style="text-align: right;">VALOR TOTAL:</td>
+                            <td class="total-value" style="text-align: right;">R$ 42.000,00</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p style="font-size: 0.75em; color: #888; margin-top: 10px; text-align: center;" class="mobile-only">Deslize a tabela para o lado para ver todos os valores.</p>
         </div>
     </section>
 
     <section>
         <div class="container">
             <div class="section-title">
-                <h2>Qualidade Premium</h2>
+                <h2>Qualidade</h2>
             </div>
             <div class="tech-box">
                 <div class="tech-item">
                     <h4>Tecido Two Way</h4>
-                    <p>Excelente durabilidade e flexibilidade. Baixa taxa de amarrotamento, mantendo o alinhamento impecável.</p>
+                    <p>Excelente durabilidade e flexibilidade. Baixa taxa de amarrotamento, ideal para o dia a dia.</p>
                 </div>
-                <div class="tech-item" style="border-left-color: var(--accent-mustard);">
+                <div class="tech-item" style="margin-top: 20px; border-left-color: var(--accent-mustard);">
                     <h4>Tricoline Elastano</h4>
-                    <p>Frescor do algodão com mobilidade. Toque macio e ajuste anatômico ao corpo.</p>
+                    <p>Frescor do algodão com a mobilidade do elastano. Toque macio e ajuste impecável.</p>
                 </div>
             </div>
         </div>
@@ -596,7 +512,7 @@
     <section>
         <div class="container">
             <div class="conditions-card">
-                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 25px; border-left: 3px solid var(--accent-mustard); padding-left: 15px; font-size: 1.3em;">Condições Gerais</h2>
+                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 25px; border-left: 3px solid var(--accent-mustard); padding-left: 15px; font-size: 1.4em;">Condições</h2>
                 <div class="conditions-grid">
                     <div class="condition-item">
                         <h5>Grade de Tamanhos</h5>
@@ -625,7 +541,7 @@
                 <div>
                     <h3>DP3 CONFECÇÕES</h3>
                     <p>CNPJ: 33.150.176/0001-89</p>
-                    <img src="imagens/dora.jpg" alt="Logo Footer" style="height: 80px; margin-top: 15px; filter: grayscale(1) brightness(2);">
+                    <img src="imagens/dora.jpg" alt="Logo Footer" style="height: 35px; margin-top: 15px; filter: grayscale(1) brightness(2);">
                 </div>
                 <div>
                     <h3>Localização</h3>
